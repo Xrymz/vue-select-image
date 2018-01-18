@@ -1,4 +1,3 @@
-
 export default {
   name: 'vue-select-image',
   props: {
@@ -34,11 +33,21 @@ export default {
           item.selected = !item.selected
         }
         return item
-      });
+      })
       this.multipleSelected = this.dataImagesLocal.filter((item) => {
         return !!item.selected
       })
       this.$emit('onSelectMultipleImage', this.multipleSelected)
+    }
+  },
+  mounted () {
+    if (!this.isMultiple) {
+      let selected = this.dataImagesLocal.filter((item) => {
+        return !!item.selected
+      })
+      if (selected.length !== 0) {
+        this.singleSelected = selected[0]
+      }
     }
   }
 }
